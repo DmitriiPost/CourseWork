@@ -18,6 +18,63 @@ int getSeniorDegreeOfTwo(int number)
 	return i;
 }
 
+void newNum(int num, int intOrFloat)
+{
+	unsigned int mask = 2;
+	int order = sizeof(int) * 8 / 2;
+	for (int i = 0; i < order - 1; i++)
+	{
+		mask = (mask << 2) + 2;
+	}
+	if (num > 0)
+	{
+		num = num | mask;
+	}
+	else
+	{
+		num = num & mask;
+	}
+	unsigned mask1 = 1 << order * 2 - 1;
+	if (intOrFloat == 1)
+	{
+		for (int i = 0; i < order * 2; i++)
+		{
+			cout << ((num & mask1) ? 1 : 0);
+			mask1 = mask1 >> 1;
+			if (!i)
+			{
+				cout << " ";
+			}
+		}
+	}
+	else if (intOrFloat == 2)
+	{
+		mask1 = 1 << order * 2 - 1;
+		for (int i = 1; i < order * 2; i++)
+		{
+			cout << ((num & mask1) ? 1 : 0);
+			mask1 = mask1 >> 1;
+			if (i == 8)
+			{
+				cout << " ";
+			}
+		}
+	}
+	else
+	{
+		unsigned int mask1 = 1 << order * 2 - 1;
+		for (int j = 0; j < order * 2; j++)
+		{
+			cout << ((num & mask1) ? 1 : 0);
+			mask1 = mask1 >> 1;
+			if ((j == 10) || (j == 0))
+			{
+				cout << " ";
+			}
+		}
+	}
+}
+
 void sizeOfTypes()
 {
 	cout << "int: " << sizeof(int) << '\n' << "short int: " << sizeof(short int) << '\n' << "long int: " << sizeof(long int) << '\n' << "float: " << sizeof(float) << '\n' << "double: " << sizeof(double) << '\n' << "long double: " << sizeof(long double) << '\n' << "char: " << sizeof(char) << '\n' << "bool: " << sizeof(bool) << '\n';
@@ -50,6 +107,14 @@ void showBinaryInt()
 		}
 	}
 	cout << '\n';
+	cout << "Хотите ли вы увидеть ИДЗ?\n1. Да\n0. Нет\n";
+	int choise;
+	cin >> choise;
+	if (choise == 1)
+	{
+		newNum(num, 1);
+		cout << '\n';
+	}
 }
 
 void showBinaryFloat()
@@ -78,6 +143,14 @@ void showBinaryFloat()
 		}
 	}
 	cout << '\n';
+	cout << "Хотите ли вы увидеть ИДЗ?\n1. Да\n0. Нет\n";
+	int choise;
+	cin >> choise;
+	if (choise == 1)
+	{
+		newNum(num, 2);
+		cout << '\n';
+	}
 }
 
 void showBinaryDouble()
@@ -108,7 +181,18 @@ void showBinaryDouble()
 			k++;
 		}
 	}
-
+	cout << '\n';
+	cout << "Хотите ли вы увидеть ИДЗ?\n1. Да\n0. Нет\n";
+	int choise;
+	cin >> choise;
+	if (choise == 1)
+	{
+		for (int i = 1; i >= 0; i--)
+		{
+			newNum(nums[i], 3);
+		}
+	}
+	cout << '\n';
 }
 
 int c1()
